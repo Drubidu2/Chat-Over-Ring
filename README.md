@@ -23,16 +23,6 @@ The application supports three main layers:
 9. UDP communication with the node registry server.
 10. UDP timeout handling when waiting for registry server replies.
 
-## Repository Structure
-
-```text
-.
-├── COR.c       Main implementation: command parser, TCP and UDP communication, topology handling, routing, forwarding, and chat delivery
-├── COR.h       Data structures, constants, and function declarations
-├── Makefile    Build rules for the COR executable
-└── README.md   Project documentation
-```
-
 ## Requirements
 
 The project is intended to run on a Unix or Linux environment with POSIX sockets.
@@ -42,7 +32,7 @@ Required tools:
 1. `gcc`
 2. `make`
 3. Network access between all node instances
-4. Access to the registry server when using `join` or `chord`
+4. Access to the IST registry server when using `join` or `chord`
 
 Default registry server:
 
@@ -295,17 +285,6 @@ Chat delivery uses the forwarding table. If the current node is not the destinat
 5. UDP communication with the registry server uses a 5 second timeout.
 6. The routing state is eventually updated through propagated `ROUTE` messages after topology changes.
 7. The program should be terminated with `leave` or `exit` to allow graceful cleanup.
-
-## Suggested Test Checklist
-
-1. Start one node and join an empty ring.
-2. Add a second node and verify `show topology` on both nodes.
-3. Add more nodes and verify predecessor, successor, and second successor values.
-4. Create a chord and verify that routing and forwarding tables are updated.
-5. Send chat messages between non adjacent nodes.
-6. Remove a chord and verify that shortest paths are recomputed.
-7. Remove a node using `leave` and confirm that the ring remains connected.
-8. Test UDP timeout behaviour by using an unreachable registry address.
 
 ## License
 
